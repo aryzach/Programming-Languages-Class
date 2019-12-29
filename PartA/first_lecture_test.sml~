@@ -1,0 +1,15 @@
+fun max(xs : int list)=
+    if null xs
+    then NONE
+    else
+	let val max_rest = max(tl xs)
+	in
+	    if max_rest > hd xs
+	    then SOME (hd xs)
+	    else SOME (max_rest);
+
+	    
+
+val g = [3,2,1,5,4,6];		      
+
+		  

@@ -1,0 +1,24 @@
+(* This is a comment.This is our first program. *)
+
+val j = 2;
+
+fun pow(x:int,y:int) =
+    if y=0
+    then 1
+    else x * j * pow(x,y-1)
+
+		
+val x = 2;
+val y = 3;
+
+val j = 1;
+
+val z = pow(2,3);
+
+fun swap( pr : int list, t : int)=
+    if null pr
+    then t
+    else swap(tl pr, t + (hd pr) + (hd (tl pr)))
+
+
+val g = [1,2,3,4]

@@ -1,0 +1,17 @@
+
+
+class A
+  def m1
+    34
+  end
+
+  def (x,y)
+    z = 7
+    if x > y
+      false
+    else
+      x + y * z
+    end
+  end
+
+end

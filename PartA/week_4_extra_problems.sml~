@@ -1,0 +1,81 @@
+fun compose_opt (f, g) =
+    fn x => case g x of
+		NONE => NONE
+	      | SOME i => case f i of
+			      NONE => NONE
+			   | SOME j => SOME j
+
+(*infix !>
+fun x !> f !> g = g(f x)*)
+					   
+fun do_until f g x = case g(f x) of
+				  false => f x
+				| _ => do_until f g (f x);
+
+fun do_until_new f x = do_until f (fn y => y = x)  x;
+
+(* need to finish implementing factorial
+fun do_fact x = x * (do_until ((fn x => (x * (x-1),x-1)), (fn (x,y) => y > 1))) x
+ *)
+
+fun fact num = (do_until (fn x => x * (fact (x-1))) (fn y => y >= 2)) num
+
+fun fixed_point f x = do_until_new f x
+
+fun map2 (f, (x,y)) = (f x, f y);
+
+		      
+fun app_all f l x =
+    let val lst = map f (l x)
+    in
+	let fun cclst lol =
+		case lol of
+		    [] => []
+		  | y::ys => y @ (cclst ys)
+	in cclst lst
+	end
+    end
+			
+			
+    (*case l x of
+			[] => []
+		      | y::ys => (f y)::(app_all f l ys)*)
+
+(* (int -> int) list -> int -> int list *)				 
+fun map_fun_on_int fnlst i =
+    let val tup = (fnlst, i)
+    in
+	case tup of
+	    ([],i) => []
+	  | ((x::xs),i) => (x i)::(map_fun_on_int xs i)
+    end
+
+fun g n = [n,2*n,3*n];
+val r = app_all g g 1;
+
+
+fun fold f acc xs =
+    case xs of
+	[] => acc
+      | x::xs => fold f (f(acc,x)) xs;
+
+fun sum xs = fold (fn (acc,x) => acc + x) 0 xs;
+
+val sorted3 = fn x => fn y => fn z => x<y andalso y<z
+
+fun curry f = fn x => fn y => f (x,y)
+
+fun range (i,j) = if i > j then [] else i::range(i+1,j)
+					
+
+fun range_curried i j = range(i,j);
+
+val new_range = curry range;
+
+val x = new_range 5 8;
+
+fun uncurry f (x,y) = f x y;
+
+fun new_map (x,y) = uncurry map (x,y);
+
+		     

@@ -1,0 +1,159 @@
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw7smlcode.sml";
+[opening hw7smlcode.sml]
+hw7smlcode.sml:215.7-219.1 Error: unclosed comment
+
+uncaught exception Compile [Compile: "syntax error"]
+  raised at: ../compiler/Parse/main/smlfile.sml:15.24-15.46
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw7smlcode.sml";
+[opening hw7smlcode.sml]
+[autoloading]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+hw7smlcode.sml:218.10-218.26 Error: non-constructor applied to argument in pattern: Shift
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw7smlcode.sml";
+[opening hw7smlcode.sml]
+[autoloading]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+hw7smlcode.sml:219.10-219.26 Error: constructor and argument don't agree in pattern [tycon mismatch]
+  constructor: string -> geom_exp
+  argument:    'Z * 'Y * 'X
+  in pattern:
+    Shift (dx,dy,sub)
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- use "hw7smlcode.sml";
+[opening hw7smlcode.sml]
+hw7smlcode.sml:187.6-198.78 Warning: match nonexhaustive
+          NoPoints => ...
+          Point _ => ...
+          Line _ => ...
+          VerticalLine _ => ...
+          LineSegment _ => ...
+          Var s => ...
+          Let (s,e1,e2) => ...
+          Intersect (e1,e2) => ...
+  
+datatype geom_exp
+  = Intersect of geom_exp * geom_exp
+  | Let of string * geom_exp * geom_exp
+  | Line of real * real
+  | LineSegment of real * real * real * real
+  | NoPoints
+  | Point of real * real
+  | Shift of string * string * string
+  | Var of string
+  | VerticalLine of real
+exception BadProgram of string
+exception Impossible of string
+val epsilon = 1E~05 : real
+val real_close = fn : real * real -> bool
+val real_close_point = fn : real * real -> real * real -> bool
+val two_points_to_line = fn : real * real * real * real -> geom_exp
+val intersect = fn : geom_exp * geom_exp -> geom_exp
+val eval_prog = fn : geom_exp * (string * geom_exp) list -> geom_exp
+val preprocess_prog = fn : geom_exp -> geom_exp
+val it = () : unit
+- preprocess_prog (LineSegment(1,2,3,4)
+= ;
+= preprocess_prog (LineSegment(1,2,3,4);
+= )
+= stdIn:5.1 Error: syntax error found at RPAREN
+- preprocess_prog (LineSegment(1,2,3,4));
+stdIn:1.19-2.16 Error: operator and operand don't agree [overload conflict]
+  operator domain: real * real * real * real
+  operand:         [int ty] * [int ty] * [int ty] * [int ty]
+  in expression:
+    LineSegment (1,2,3,4)
+- preprocess_prog (LineSegment(1.0,2.0,3.0,4.0));
+val it = LineSegment (1.0,2.0,3.0,4.0) : geom_exp
+- preprocess_prog (LineSegment(5.0,2.0,3.0,4.0));
+val it = LineSegment (3.0,4.0,5.0,2.0) : geom_exp
+- preprocess_prog (LineSegment(5.0,2.0,5.0,4.0));
+val it = LineSegment (5.0,2.0,5.0,4.0) : geom_exp
+- preprocess_prog (LineSegment(5.0,2.0,5.0,1.0));
+val it = LineSegment (5.0,1.0,5.0,5.0) : geom_exp
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw7smlcode.sml";
+[opening hw7smlcode.sml]
+[autoloading]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+hw7smlcode.sml:219.33-219.59 Error: operator and operand don't agree [tycon mismatch]
+  operator domain: geom_exp
+  operand:         string
+  in expression:
+    preprocess_prog e
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw7smlcode.sml";
+[opening hw7smlcode.sml]
+[autoloading]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+hw7smlcode.sml:187.6-198.78 Warning: match nonexhaustive
+          NoPoints => ...
+          Point _ => ...
+          Line _ => ...
+          VerticalLine _ => ...
+          LineSegment _ => ...
+          Var s => ...
+          Let (s,e1,e2) => ...
+          Intersect (e1,e2) => ...
+  
+datatype geom_exp
+  = Intersect of geom_exp * geom_exp
+  | Let of string * geom_exp * geom_exp
+  | Line of real * real
+  | LineSegment of real * real * real * real
+  | NoPoints
+  | Point of real * real
+  | Shift of real * real * geom_exp
+  | Var of string
+  | VerticalLine of real
+exception BadProgram of string
+exception Impossible of string
+val epsilon = 1E~05 : real
+val real_close = fn : real * real -> bool
+val real_close_point = fn : real * real -> real * real -> bool
+val two_points_to_line = fn : real * real * real * real -> geom_exp
+val intersect = fn : geom_exp * geom_exp -> geom_exp
+val eval_prog = fn : geom_exp * (string * geom_exp) list -> geom_exp
+val preprocess_prog = fn : geom_exp -> geom_exp
+val it = () : unit
+- 
+
+Process sml finished
